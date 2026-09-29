@@ -3,7 +3,6 @@
 
 def func1(name):
     print(f"Hello {name}!")
-    return f"Goodbye {name}!"
 
 
 def func2(name):

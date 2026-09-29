@@ -1,4 +1,4 @@
-
+import random
 list_a = [1,3,4,5,7,10,9,8,6]
 
 list_b = [10,1,2,3,4,5,6,7,8,9]
@@ -9,6 +9,36 @@ list_c = [1,2,3,4,5,10,9,8,7,6]
 sorted_a = sorted(list_a)
 sorted_b = sorted(list_b)
 sorted_c = sorted(list_c)
+
+def our_sort(my_list):
+    # Our sorting algorithm
+    n = len(my_list)
+    # is the list sorted?
+    complete = is_sorted(my_list)
+    while not complete:
+        for i in range(n-1):
+            if my_list[i] > my_list[i+1]:
+                my_list = push_to_end(my_list, i)
+
+        print(f"current list: {my_list}")
+        complete = is_sorted(my_list)
+
+    return my_list
+
+def bubble_sort(my_list):
+    # Our sorting algorithm
+    n = len(my_list)
+    # is the list sorted?
+    complete = is_sorted(my_list)
+    while not complete:
+        for i in range(n-1):
+            if my_list[i] > my_list[i+1]:
+                my_list = swap_idx(my_list, i, i+1)
+
+        # print(f"current list: {my_list}")
+        complete = is_sorted(my_list)
+
+    return my_list
 
 def is_sorted(my_list):
     # Return True if my_list is sorted
@@ -37,16 +67,32 @@ def swap_idx(my_list, i, j):
         holder = my_list[i]
         my_list[i] = my_list[j]
         my_list[j] = holder
-        #  
+  
     else:
         raise ValueError("i or j is bigger than n; that won't work")
 
     return my_list
 
-print(f"list_a = {list_a}")
-print(f"list_a is sorted: {is_sorted(list_a)}")
-print(f"sorted_a = {sorted_a}")
-print(f"sorted_a is sorted: {is_sorted(sorted_a)}")
+# print(f"list_a = {list_a}")
+# print(f"list_a is sorted: {is_sorted(list_a)}")
+# print(f"sorted_a = {sorted_a}")
+# print(f"sorted_a is sorted: {is_sorted(sorted_a)}")
 
-print(f"swap_idx(list_a, 1, 6) = {swap_idx(list_a, 1, 6)}")
-print(f"push_to_end(list_a, 1) = {push_to_end(list_a, 1)}")
+# print(f"swap_idx(list_a, 1, 6) = {swap_idx(list_a, 1, 6)}")
+# # print(f"push_to_end(list_a, 1) = {push_to_end(list_a, 1)}")
+# print(f" Sort by pushing to the end")
+# print(f"starting list: {list_c}")
+# our_sort(list_c)
+# print(f"final list: {list_c}")
+
+# print("-----------")
+# print(f"Sort by swapping")
+# print(f"starting list: {list_a}")
+# bubble_sort(list_a)
+# print(f"final list: {list_a}")
+
+# Make a big random list
+N = 10000
+big_list = random.sample(range(N),N)
+print(f"{bubble_sort(big_list)}")
+# print(f"big_list = {big_list}")
