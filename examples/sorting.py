@@ -92,44 +92,52 @@ def swap_idx(my_list, i, j):
 # print(f"final list: {list_a}")
 
 # Make a big random list
-N = 10000
+N = 20000
 big_list = random.sample(range(N),N)
 # print(f"{bubble_sort(big_list)}")
 # print(f"big_list = {big_list}")
 
 ### Why is this so slow? What could we do differently?
-
 list_1 = [1, 5, 10]
 list_2 = [2, 20, 30]
-
 list_1_2 = [1, 2, 5, 10, 20, 30]
 
 merged_list = []
 
 def merge_sorted(list1, list2):
     merged_list = []
-
+    
     while (len(list1) > 0) and (len(list2) > 0): 
-        print(f"list_1 = {list_1}")
-        print(f"list_2 = {list_2}")
-        print("_____")
 
-        if list_1[0] < list_2[0]:
-            e = list_1.pop(0)
+        if list1[0] < list2[0]:
+            e = list1.pop(0)
             merged_list.append(e)
         else:
-            e = list_2.pop(0)
+            e = list2.pop(0)
             merged_list.append(e)
-
-        print(f"list_1 = {list_1}")
-        print(f"list_2 = {list_2}")
-        print(f"merged_list = {merged_list}")
-        print("\n \n")
 
     if len(list1) > 0:
         merged_list += list1
     if len(list2) > 0:
         merged_list += list2
-    print(f"merged_list = {merged_list}")
+    return merged_list
 
 merge_sorted(list_1, list_2)
+
+def merge_sort(my_list):
+    all_lists = [[x] for x in my_list] # Make each element its own list
+
+    while len(all_lists) > 1:
+        l1 = all_lists.pop(0)
+        l2 = all_lists.pop(0)
+        m_list = merge_sorted(l1, l2)
+        all_lists.append(m_list)
+    return all_lists[0]
+
+import time
+
+start = time.time()
+merge_sort(big_list)
+# print(f"sorted_a = {merge_sort(big_list)}")
+end = time.time()
+print(f"N = {N}     elapsed time: {end-start}")
