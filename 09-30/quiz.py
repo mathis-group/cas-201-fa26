@@ -1,4 +1,4 @@
-N = 35
+N = 37
 
 xs = []
 x = 0
@@ -9,8 +9,8 @@ while x**2 < N:
 
 ys = []
 for x in xs:
-    y = x-2
-    ys.append(x-2)
+    y = x-4
+    ys.append(x-4)
 
 #ys = [x - 2 for x in xs]
 
